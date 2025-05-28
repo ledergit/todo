@@ -1,7 +1,30 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:todo_app/models/selected_list.dart';
 
 class ConfirmDeleteList extends StatelessWidget {
-  const ConfirmDeleteList({super.key});
+  final SelectedList selectedList;
+
+  const ConfirmDeleteList({required this.selectedList, super.key});
+
+  Future<void> deleteListAndTodos() async {
+    //delete all todos
+    final todosQuery =
+        await FirebaseFirestore.instance
+            .collection('todos')
+            .where('listId', isEqualTo: selectedList.id)
+            .get();
+
+    for (var doc in todosQuery.docs) {
+      await doc.reference.delete();
+    }
+
+    //delete list itself
+    await FirebaseFirestore.instance
+        .collection('lists')
+        .doc(selectedList.id)
+        .delete();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +54,9 @@ class ConfirmDeleteList extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
+              deleteListAndTodos();
               Navigator.pop(context);
+              Scaffold.of(context).openDrawer();
             },
             style: ElevatedButton.styleFrom(
               shape: RoundedRectangleBorder(

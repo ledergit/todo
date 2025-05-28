@@ -3,8 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_app/firebase_options.dart';
 import 'package:todo_app/models/selected_list.dart';
-import 'package:todo_app/widgets/confirm_delete_list.dart';
-import 'package:todo_app/widgets/confirm_delete_list.dart';
+import 'package:todo_app/widgets/list_options_bottom_sheet.dart';
 import 'package:todo_app/widgets/lists_drawer.dart';
 import 'package:todo_app/widgets/todo_list.dart';
 
@@ -17,7 +16,6 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -41,7 +39,6 @@ class StartScreen extends StatefulWidget {
 }
 
 class _StartScreenState extends State<StartScreen> {
-  //final FirebaseFirestore firestore = FirebaseFirestore.instance;
   final TextEditingController _controller = TextEditingController();
   final _focusNode = FocusNode();
   SelectedList? _selectedList;
@@ -108,116 +105,8 @@ class _StartScreenState extends State<StartScreen> {
                     () => showModalBottomSheet(
                       context: context,
                       builder: (context) {
-                        return Container(
-                          padding: EdgeInsets.all(16),
-                          height: 200,
-                          width: double.infinity,
-                          child: Column(
-                            children: [
-                              // WIDGET #1 IN COLUMN
-                              Row(
-                                children: [
-                                  Expanded(child: SizedBox()),
-                                  Expanded(
-                                    child: Center(
-                                      child: Text(
-                                        'List Options',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Align(
-                                      alignment: Alignment.centerRight,
-                                      child: TextButton(
-                                        onPressed: () => Navigator.pop(context),
-                                        child: Text('Done'),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              // WIDGET #2 IN COLUMN
-                              Divider(indent: 16, endIndent: 16),
-                              // WIDGET #3 IN COLUMN
-                              SizedBox(height: 16),
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.pop(context);
-                                  showModalBottomSheet(
-                                    backgroundColor: Colors.transparent,
-                                    context: context,
-                                    builder: (context) => ConfirmDeleteList(),
-                                  );
-                                },
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Icon(
-                                      Icons.delete_outline,
-                                      color: Colors.red,
-                                      size: 16,
-                                    ),
-                                    SizedBox(width: 8),
-                                    Text(
-                                      'Delete List...',
-                                      style: TextStyle(
-                                        color: Colors.red,
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-
-                              /*
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Expanded(
-                                    child: Center(
-                                      child: Text(
-                                        'List Options',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  TextButton(
-                                    onPressed: () => Navigator.pop(context),
-                                    child: Text('Done'),
-                                  ),
-                                ],
-                              ),
-                              */
-                              /*                             Row(
-                                crossAxisAlignment: CrossAxisAlignment.baseline,
-                                textBaseline: TextBaseline.alphabetic,
-                                children: [
-                                  Expanded(
-                                    child: Center(
-                                      child: Text(
-                                        'List Options',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  TextButton(
-                                    onPressed: () => Navigator.pop(context),
-                                    child: Text('Done'),
-                                  ),
-                                ],
-                              ),*/
-                            ],
-                          ),
+                        return ListOptionsBottomSheet(
+                          selectedList: _selectedList!,
                         );
                       },
                     ),
