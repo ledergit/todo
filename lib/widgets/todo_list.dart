@@ -34,11 +34,18 @@ class TodoList extends StatelessWidget {
                     child: Row(
                       children: [
                         GestureDetector(
+                          behavior: HitTestBehavior.opaque,
                           // using this logic so that if TextField has focus, clicking checkbox unfocuses TextField without actually checking box.
                           onTap: () {
+                            final currentFocus = FocusScope.of(context);
+                            if (!currentFocus.hasPrimaryFocus &&
+                                currentFocus.focusedChild != null) {
+                              currentFocus.unfocus();
+                              /*
                             final hasFocus = FocusScope.of(context).hasFocus;
                             if (hasFocus) {
                               FocusScope.of(context).unfocus();
+                              */
                             } else {
                               FirebaseFirestore.instance
                                   .collection('todos')
