@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/widgets/tappable_container.dart';
 
 class ConfirmDeleteList extends StatelessWidget {
   const ConfirmDeleteList({super.key});
@@ -7,75 +6,70 @@ class ConfirmDeleteList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(8),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
+            width: double.infinity,
+            height: 50,
             decoration: BoxDecoration(
+              //color: Theme.of(context).colorScheme.primary,
               color: Colors.white,
-
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
             ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
-              child: Column(
-                children: [
-                  Text(
-                    '"To do" will be permanently deleted',
-                    style: TextStyle(color: Colors.grey[800]),
-                  ),
-                  Divider(),
-                  ElevatedButton(
-                    onPressed: () => Navigator.pop(context),
-                    child: Text('Test'),
-                  ),
-
-                  /*
-                  Container(
-                    width: double.infinity,
-                    padding: EdgeInsets.all(12),
-                    color: Colors.yellow,
-                    child: Text('hello'),
-                  ),
-                  */
-                  /*
-                  TappableContainer(
-                    onTap: () => Navigator.pop(context),
-                    child: Text(
-                      'Delete List',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(175, 255, 0, 0),
-                      ),
-                    ),
-                    //child: Text('Delete List'),
-                  ),
-*/
-                  /*
-                  GestureDetector(
-                    onTap: () => Navigator.pop(context),
-                    child: Container(
-                      alignment: Alignment(0, 0),
-                      width: double.infinity,
-                      child: Text(
-                        'Delete List',
-                        style: TextStyle(
-                          color: Color.fromARGB(170, 255, 0, 0),
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-*/
-                  //Text('Delete List', style: TextStyle(color: Colors.red)),
-                ],
+            child: Center(
+              child: Text(
+                '"ListName" will be permanently deleted',
+                style: TextStyle(
+                  //color: Colors.white,
+                  color: Colors.grey[600],
+                  fontWeight: FontWeight.w400,
+                ),
               ),
             ),
           ),
           ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.vertical(
+                  bottom: Radius.circular(12),
+                ),
+              ),
+              padding: EdgeInsets.zero,
+            ),
+            child: SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: Center(
+                child: Text(
+                  'Delete List',
+                  style: TextStyle(color: Colors.red, fontSize: 16),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: 16),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+            ),
             onPressed: () => Navigator.pop(context),
-            child: Text('Button 2'),
+            child: SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: Center(
+                child: Text(
+                  'Cancel',
+                  style: TextStyle(color: Colors.blue[800], fontSize: 16),
+                ),
+              ),
+            ),
           ),
         ],
       ),

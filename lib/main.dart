@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:todo_app/firebase_options.dart';
 import 'package:todo_app/models/selected_list.dart';
 import 'package:todo_app/widgets/confirm_delete_list.dart';
-import 'package:todo_app/widgets/confirm_delete_list2.dart';
+import 'package:todo_app/widgets/confirm_delete_list.dart';
 import 'package:todo_app/widgets/lists_drawer.dart';
 import 'package:todo_app/widgets/todo_list.dart';
 
@@ -150,7 +150,7 @@ class _StartScreenState extends State<StartScreen> {
                                   showModalBottomSheet(
                                     backgroundColor: Colors.transparent,
                                     context: context,
-                                    builder: (context) => ConfirmDeleteList2(),
+                                    builder: (context) => ConfirmDeleteList(),
                                   );
                                 },
                                 child: Row(
