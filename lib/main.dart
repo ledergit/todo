@@ -97,6 +97,7 @@ class _StartScreenState extends State<StartScreen> {
       child: Scaffold(
         key: _scaffoldKey,
         appBar: AppBar(
+          backgroundColor: const Color.fromARGB(255, 116, 141, 253),
           actions: [
             Padding(
               padding: const EdgeInsets.only(right: 16.0),
@@ -107,16 +108,16 @@ class _StartScreenState extends State<StartScreen> {
                       builder: (context) {
                         return ListOptionsBottomSheet(
                           selectedList: _selectedList!,
+                          scaffoldKey: _scaffoldKey,
                         );
                       },
                     ),
-                child: Icon(Icons.more_horiz, color: Colors.grey[700]),
+                child: Icon(Icons.more_horiz, color: Colors.white),
               ),
             ),
           ],
           titleSpacing: 0,
           leading: Padding(
-            //padding: EdgeInsets.symmetric(horizontal: 16),
             padding: EdgeInsets.only(left: 8),
 
             child: Builder(
@@ -124,8 +125,8 @@ class _StartScreenState extends State<StartScreen> {
                   (context) => IconButton(
                     icon: Icon(
                       Icons.arrow_back_ios_new,
-                      //color: Colors.blue[600],
-                      color: Colors.grey[700],
+                      //color: Colors.grey[700],
+                      color: Colors.white,
                     ),
 
                     //icon: Icon(Icons.arrow_back_outlined),
@@ -136,11 +137,14 @@ class _StartScreenState extends State<StartScreen> {
             ),
           ),
           title: Text(
-            'Select list...',
-            style: TextStyle(color: Colors.grey[700]),
+            'Lists',
+            //style: TextStyle(color: Colors.grey[700]),
+            style: TextStyle(color: Colors.white),
           ),
         ),
 
+        //backgroundColor: Colors.white,
+        backgroundColor: const Color.fromARGB(255, 116, 141, 253),
         drawer: ListsDrawer(onSelectedList: onSelectedList),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -153,7 +157,11 @@ class _StartScreenState extends State<StartScreen> {
                   _selectedList?.name ?? 'No list selected',
                   style: Theme.of(
                     context,
-                  ).textTheme.headlineMedium!.copyWith(color: Colors.grey[700]),
+                    //).textTheme.headlineMedium!.copyWith(color: Colors.grey[700]),
+                  ).textTheme.headlineMedium!.copyWith(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w800,
+                  ),
                 ),
               ),
               TodoList(
@@ -165,16 +173,22 @@ class _StartScreenState extends State<StartScreen> {
                 focusNode: _focusNode,
                 controller: _controller,
                 decoration: InputDecoration(
+                  filled: true,
+                  fillColor: const Color.fromARGB(255, 91, 116, 228),
                   prefixIcon: Icon(
                     _focusNode.hasFocus
                         ? Icons.check_box_outline_blank
                         : Icons.add,
+                    color: Colors.white,
                   ),
                   labelText: 'Enter task',
+                  labelStyle: TextStyle(color: Colors.white),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide.none,
                   ),
                 ),
+
                 onSubmitted: _saveTask,
               ),
             ],

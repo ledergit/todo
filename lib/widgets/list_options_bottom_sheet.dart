@@ -4,8 +4,13 @@ import 'package:todo_app/widgets/confirm_delete_list.dart';
 
 class ListOptionsBottomSheet extends StatelessWidget {
   final SelectedList selectedList;
+  final GlobalKey<ScaffoldState> scaffoldKey;
 
-  const ListOptionsBottomSheet({required this.selectedList, super.key});
+  const ListOptionsBottomSheet({
+    required this.selectedList,
+    required this.scaffoldKey,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +54,10 @@ class ListOptionsBottomSheet extends StatelessWidget {
                 backgroundColor: Colors.transparent,
                 context: context,
                 builder:
-                    (context) => ConfirmDeleteList(selectedList: selectedList),
+                    (context) => ConfirmDeleteList(
+                      selectedList: selectedList,
+                      scaffoldKey: scaffoldKey,
+                    ),
               );
             },
             child: Row(

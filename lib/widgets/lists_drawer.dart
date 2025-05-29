@@ -38,9 +38,12 @@ class _ListsDrawerState extends State<ListsDrawer> {
 
   @override
   Widget build(BuildContext context) {
-    final headerTextStyle = Theme.of(context).textTheme.headlineSmall!;
+    final headerTextStyle = Theme.of(
+      context,
+    ).textTheme.headlineSmall!.copyWith(color: Colors.white);
 
     return Drawer(
+      backgroundColor: Colors.white,
       width: double.infinity,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.zero),
@@ -49,7 +52,9 @@ class _ListsDrawerState extends State<ListsDrawer> {
         //padding: EdgeInsets.zero,
         children: [
           DrawerHeader(
-            decoration: BoxDecoration(color: Colors.blue),
+            decoration: BoxDecoration(
+              color: Color.fromARGB(255, 116, 141, 253),
+            ),
             child: Align(
               alignment: Alignment.topLeft,
               child: TextButton(
@@ -61,7 +66,8 @@ class _ListsDrawerState extends State<ListsDrawer> {
                     Icon(
                       Icons.person,
                       size: headerTextStyle.fontSize,
-                      color: Colors.grey[700],
+                      //color: Colors.grey[700],
+                      color: Colors.white,
                     ),
                     SizedBox(width: 8),
                     Text('Matt\'s Lists', style: headerTextStyle),
@@ -109,7 +115,10 @@ class _ListsDrawerState extends State<ListsDrawer> {
                         },
                         child: Row(
                           children: [
-                            Icon(Icons.list, color: Colors.blue[600]),
+                            Icon(
+                              Icons.list,
+                              color: Color.fromARGB(255, 116, 141, 253),
+                            ),
                             SizedBox(width: 8),
                             Text(data['name']),
                           ],

@@ -4,8 +4,13 @@ import 'package:todo_app/models/selected_list.dart';
 
 class ConfirmDeleteList extends StatelessWidget {
   final SelectedList selectedList;
+  final GlobalKey<ScaffoldState> scaffoldKey;
 
-  const ConfirmDeleteList({required this.selectedList, super.key});
+  const ConfirmDeleteList({
+    required this.selectedList,
+    required this.scaffoldKey,
+    super.key,
+  });
 
   Future<void> deleteListAndTodos() async {
     //delete all todos
@@ -56,7 +61,8 @@ class ConfirmDeleteList extends StatelessWidget {
             onPressed: () {
               deleteListAndTodos();
               Navigator.pop(context);
-              Scaffold.of(context).openDrawer();
+              scaffoldKey.currentState?.openDrawer();
+              //Scaffold.of(context).openDrawer();
             },
             style: ElevatedButton.styleFrom(
               shape: RoundedRectangleBorder(
